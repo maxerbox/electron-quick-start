@@ -14,13 +14,15 @@
     <script>
       // You can also require other files to run in this process
       require('./renderer.js')
-      document.getElementById("webview").addEventListener("focus", hasFocus)
+      var webview = document.getElementById("webview")
+      webview.addEventListener("focus", hasFocus)
       function hasFocus(e) {
         require('electron').remote.getCurrentWebContents().focus()
         e.target.blur()
         window.focus()
-        alert(document.hasFocus())
+        alert(`${require('electron').remote.process.versions.electron} - ${document.hasFocus()}`)
       }
+
       // we try to focus the main contents
       
     </script>
